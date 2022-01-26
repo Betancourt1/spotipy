@@ -1383,6 +1383,17 @@ class Spotify(object):
         return self._get(
             "me/following/contains", ids=",".join(idlist), type="artist"
         )
+    
+    def current_user_followed_artists(self, limit=20, after=None):
+        """ Gets a list of the users followed by the current authorized user
+            Parameters:
+                - limit - the number of artists to return
+                - after - the last artist ID retrieved from the previous
+                          request
+        """
+        return self._get(
+            "me/following", type="user", limit=limit, after=after
+        )
 
     def current_user_following_users(self, ids=None):
         """ Check if the current user is following certain artists
